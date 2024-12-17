@@ -13,11 +13,16 @@ class QuestionsSummary extends StatelessWidget {
       height: 300,
       child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: summaryData.map(
             (data) {
               //final questionIndex = (data['question_index'] as int? ?? 0);
-              return SummaryItem(data);
+              return SummaryItem(
+                data: data,
+                isCorrectAnswer: ((data['user_answer'] as String) ==
+                        (data['correct_answer'] as String)
+                    ? true
+                    : false),
+              );
               // Row(
               //   children: [
               //     Text(

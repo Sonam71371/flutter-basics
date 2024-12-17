@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SummaryItem extends StatelessWidget {
-  const SummaryItem(this.data, {super.key});
+  const SummaryItem({
+    super.key,
+    required this.data,
+    required this.isCorrectAnswer,
+  });
 
   final Map<String, Object> data;
+  final bool isCorrectAnswer;
+
   @override
   Widget build(context) {
     final questionIndex = (data['question_index'] as int? ?? 0);
@@ -16,23 +22,20 @@ class SummaryItem extends StatelessWidget {
           height: 30,
           alignment: Alignment.center, // Center the text inside the container
           decoration: BoxDecoration(
-            color: Colors.purple,
-             // Background color (optional)
-            // border: Border.all(
-            //   // backgroundColor: Colors.purple, // Border color
-            //   width: 2.0, // Border width
-            // ),
-            borderRadius: BorderRadius.circular(15),
-             // Circular border for rounded effect
+            color: isCorrectAnswer
+                ? const Color.fromARGB(255, 150, 198, 241)
+                : const Color.fromARGB(255, 249, 133, 241),
+            borderRadius: BorderRadius.circular(100),
+            // Circular border for rounded effect
           ),
           child: Text(
-          questionIndex.toString(),
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            // color: Colors.purple,
+            questionIndex.toString(),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 22, 2, 56),
+            ),
           ),
-        ),
-         ), //(data['question_index'] as String? ?? '0',),//(questionIndex.toString(),),
+        ), //(data['question_index'] as String? ?? '0',),//(questionIndex.toString(),),
         const SizedBox(
           width: 20,
         ),
@@ -64,7 +67,7 @@ class SummaryItem extends StatelessWidget {
                 style: const TextStyle(
                   color: Color.fromARGB(255, 8, 127, 113),
                 ),
-                 textAlign: TextAlign.left,
+                textAlign: TextAlign.left,
               ),
               const Padding(
                 padding: EdgeInsets.symmetric(

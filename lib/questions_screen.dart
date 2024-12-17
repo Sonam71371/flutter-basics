@@ -5,7 +5,10 @@ import 'package:adv_basics/answer_button.dart';
 import 'package:adv_basics/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key, required this.onSelectAnswer,});
+  const QuestionsScreen({
+    super.key,
+    required this.onSelectAnswer,
+  });
 
   final void Function(String answer) onSelectAnswer;
 
@@ -22,7 +25,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     // currentQuestionIndex += 1;
     widget.onSelectAnswer(selectedAnswer);
     setState(() {
-          currentQuestionIndex++;
+      currentQuestionIndex++;
     });
   }
 
@@ -33,10 +36,12 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     return SizedBox(
       width: double.infinity,
       child: Container(
-        margin: const EdgeInsets.all(40,),
+        margin: const EdgeInsets.all(
+          40,
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,  // vertical alignment
-          crossAxisAlignment: CrossAxisAlignment.stretch,  //horizontal alignment
+          mainAxisAlignment: MainAxisAlignment.center, // vertical alignment
+          crossAxisAlignment: CrossAxisAlignment.stretch, //horizontal alignment
           children: [
             Text(
               currentQuestion.text,
@@ -51,9 +56,11 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               height: 30,
             ),
             ...currentQuestion.getShuffledAnswers().map((answer) {
-              return AnswerButton(answerText: answer, onTap: () {
+              return AnswerButton(
+                answerText: answer,
+                onTap: () {
                   answerQuestion(answer);
-              },
+                },
               );
             }),
             // ...currentQuestion.answers.map((answer) {
